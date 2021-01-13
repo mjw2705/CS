@@ -143,15 +143,13 @@ def Heap_sort(a):
     # 힙 생성(삽입)
     for i in range(n, 0, -1):
         heapify(a, i, n)
-        print("create: ", i, a)
+
     # 첫번째 노드와 마지막 노드 바꿔주고 다시 힙정렬 만들어줌
     res = []
     for i in range(n, 0, -1):
         res.append(a[1])
-        print(a)
         a[1], a[i] = a[i], a[1]
         heapify(a, 1, i-1)
-        print(i, a)
 
     return res
 
