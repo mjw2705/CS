@@ -210,3 +210,8 @@ class Node:
 
 class BinarySearchTree:
     def __init__(self):
+        self.head = None
+
+    def insert(self, value):
+        if self.head == None:
+            self.head = Node(value)
