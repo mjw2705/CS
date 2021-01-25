@@ -85,8 +85,8 @@ key-value를 1:1로 매핑해서 저장하는 자료구조
 - key는 중복될 수 없다
 - key → hash function → hash를 배열의 index로 사용하고, hash는 value와 매칭되어 저장됨
 - hash가 충돌 될 때(서로 다른 key가 중복 hash로 나오는 경우)
-  - separating chaining : 해당 인덱스에 연결(LinkedList나 Red Black Tree 사용) → 추가 메모리가 필요
-  - open addressing : 다른 인덱스를 탐색 → 추가 메모리 필요 없음
+  - separating chaining(open hashing) : 해당 인덱스에 연결(LinkedList나 Red Black Tree 사용) → 추가 메모리가 필요
+  - open addressing(close hashing) : 다른 인덱스를 탐색 → 추가 메모리 필요 없음
   - resize : 저장 공간이 채워지면 저장소를 두배로 확장
 
 *장점*
