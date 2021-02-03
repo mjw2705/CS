@@ -69,12 +69,16 @@ Complete Binary Tree(완전 이진 트리) : 왼쪽에서 오른쪽으로 순서
 Perfect Binary Tree()
 - 루트 노드를 제외한 모든 노드의 자식이 2개 이하
 
+> 이진 탐색 트리 vs 힙  
+> 공통점 : 모두 이진 트리  
+> 이진 탐색 트리는 탐색을 위한 구조 / 힙은 최대,최소 검색을 위한 구조
+
 **Binary Search Tree(이진 탐색 트리)**  
 부모 노드의 값은 왼쪽 자식보다 크고, 오른쪽 자식보다 작다 → 탐색할 개수가 절반씩 줆  
 **Red Black Tree**  
 트리가 한쪽으로 치우쳐 지는것을 해결하기 위한 방법 중 Rebalancing 기법 중 하나  
 **Binray Heap**  
-max heap과 min heap으로 이루어짐  
+완전 이진 트리의 일종으로 max heap과 min heap으로 이루어짐  
 힙은 우선순위 큐를 위해 만들어짐
 
 
