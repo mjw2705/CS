@@ -197,6 +197,7 @@ class Closehash:
 '''
 Tree
 이진 탐색 트리(BST): 탐색 속도 ↑
+시간복잡도 : 평균 - O(logn) / 최악 - O(n)
 '''
 
 
@@ -351,15 +352,119 @@ class BinarySearchTree:
         return True
 
 
-BST = BinarySearchTree()
-BST.insert(5)
-BST.insert(10)
-BST.insert(3)
-BST.insert(7)
-print(BST.search(3))
-print(BST.delete(10))
+# BST = BinarySearchTree()
+# BST.insert(5)
+# BST.insert(10)
+# BST.insert(3)
+# BST.insert(7)
+# print(BST.search(3))
+# print(BST.delete(10))
 
 
 '''
 힙
+(max heap
+insert - 최하단 노드에 채우고, 부모노드와 비교하며 swap
+delete - 루트 노드를 없애고, 최하단 노드를 루트에 넣고, 자식 노드와 비교하며 자식 노드 중 큰 자식 노드와 swap
+시간복잡도 : O(logn)
 '''
+
+
+class Heap:
+    def __init__(self):
+        self.heap_array = []
+        self.heap_array.append(None)
+
+    def move_up(self, idx):
+        if idx <= 1:
+            return False
+
+        parent_id = idx // 2
+        if self.heap_array[idx] > self.heap_array[parent_id]:
+            return True
+        else:
+            return False
+
+    def insert(self, data):
+        self.heap_array.append(data)
+        idx = len(self.heap_array) - 1
+
+        while self.move_up(idx):
+            parent_id = idx // 2
+            self.heap_array[parent_id], self.heap_array[idx] = self.heap_array[idx], \
+                                                               self.heap_array[parent_id]
+            idx = parent_id
+
+        return True
+
+    def move_down(self, idx):
+        left_child = idx * 2
+        right_child = idx * 2 + 1
+
+        # case1 - no child
+        if left_child >= len(self.heap_array):
+            return False
+        # case2 - only left child
+        elif right_child >= len(self.heap_array):
+            if self.heap_array[left_child] > self.heap_array[idx]:
+                return True
+            else:
+                return False
+        # case3 - two child
+        else:
+            # 왼쪽 노드가 더 크면
+            if self.heap_array[left_child] > self.heap_array[right_child]:
+                if self.heap_array[left_child] > self.heap_array[idx]:
+                    return True
+                else:
+                    return False
+            # 오른쪽 노드가 더 크면
+            else:
+                if self.heap_array[right_child] > self.heap_array[idx]:
+                    return True
+                else:
+                    return False
+
+    def delete(self):
+        if len(self.heap_array) <= 1:
+            return None
+        delete_node = self.heap_array[1]
+        self.heap_array[1] = self.heap_array[-1]
+
+        idx = 1
+        while self.move_down(idx):
+            left_child = idx * 2
+            right_child = idx * 2 + 1
+
+            # only left child
+            if right_child >= len(self.heap_array):
+                if self.heap_array[left_child] > self.heap_array[idx]:
+                    self.heap_array[left_child], self.heap_array[idx] = self.heap_array[idx],\
+                                                                        self.heap_array[left_child]
+                    idx = left_child
+            else:
+                # two child
+                if self.heap_array[left_child] > self.heap_array[right_child]:
+                    if self.heap_array[left_child] > self.heap_array[idx]:
+                        self.heap_array[idx], self.heap_array[left_child] = self.heap_array[left_child],\
+                                                                            self.heap_array[idx]
+                        idx = left_child
+                else:
+                    if self.heap_array[right_child] > self.heap_array[idx]:
+                        self.heap_array[idx], self.heap_array[right_child] = self.heap_array[right_child],\
+                                                                             self.heap_array[idx]
+                        idx = right_child
+
+        return delete_node
+
+
+heap = Heap()
+heap.insert(5)
+heap.insert(21)
+heap.insert(2)
+heap.insert(10)
+heap.insert(8)
+heap.insert(14)
+print(heap.heap_array)
+heap.delete()
+print(heap.heap_array)
