@@ -363,7 +363,7 @@ class BinarySearchTree:
 
 '''
 힙
-(max heap
+(max heap)
 insert - 최하단 노드에 채우고, 부모노드와 비교하며 swap
 delete - 루트 노드를 없애고, 최하단 노드를 루트에 넣고, 자식 노드와 비교하며 자식 노드 중 큰 자식 노드와 swap
 시간복잡도 : O(logn)
@@ -458,13 +458,59 @@ class Heap:
         return delete_node
 
 
-heap = Heap()
-heap.insert(5)
-heap.insert(21)
-heap.insert(2)
-heap.insert(10)
-heap.insert(8)
-heap.insert(14)
-print(heap.heap_array)
-heap.delete()
-print(heap.heap_array)
+# heap = Heap()
+# heap.insert(5)
+# heap.insert(21)
+# heap.insert(2)
+# heap.insert(10)
+# heap.insert(8)
+# heap.insert(14)
+# print(heap.heap_array)
+# heap.delete()
+# print(heap.heap_array)
+
+
+'''
+DFS, BFS
+'''
+
+
+def dfs(graph, start):
+    res, stack = [], []
+    stack.append(start)
+
+    while stack:
+        node = stack.pop()
+        if node not in res:
+            res.append(node)
+            stack.extend(graph[node])
+
+    return res
+
+
+def bfs(graph, start):
+    res, queue = [], []
+    queue.append(start)
+
+    while queue:
+        node = queue.pop(0)
+        if node not in res:
+            res.append(node)
+            queue.extend(graph[node])
+
+    return res
+
+
+graph = dict()
+graph[0] = [1, 2]
+graph[1] = [0, 3, 4]
+graph[2] = [0, 5, 6]
+graph[3] = [1]
+graph[4] = [1]
+graph[5] = [2]
+graph[6] = [2]
+
+Dfs = dfs(graph, 0)
+print(Dfs)
+Bfs = bfs(graph, 0)
+print(Bfs)
