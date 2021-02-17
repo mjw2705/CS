@@ -51,7 +51,24 @@ def dynamic_1932():
 
 
 # 2565번
+def dynamic_2565():
+    size = int(input())
+    line = [list(map(int, input().split())) for _ in range(size)]
 
-# if __name__ == '__main__':
+    sort_line = sorted(line, key=lambda x: x[0])
+    lis = [0 for _ in range(size)]
+
+    for i in range(size):
+        min_value = 0
+        for j in range(i):
+            if sort_line[i][1] > sort_line[j][1]:
+                min_value = max(lis[j], min_value)
+        lis[i] = min_value + 1
+
+    print(size - max(lis))
+
+
+if __name__ == '__main__':
     # dynamic_9184()
     # dynamic_1932()
+    dynamic_2565()
