@@ -1,4 +1,4 @@
-# 9184번
+# 9184번 신나는 함수 실행
 def dynamic_9184():
     def w(a, b, c):
         if a <= 0 or b <= 0 or c <= 0:
@@ -24,7 +24,7 @@ def dynamic_9184():
         print(f'w({a}, {b}, {c}) = {w(a, b, c)}')
 
 
-# 1932번
+# 1932번 정수 삼각형
 def dynamic_1932():
     size = int(input())
     tri = []
@@ -50,7 +50,7 @@ def dynamic_1932():
     print(max(sum[-1]))
 
 
-# 2565번
+# 2565번 전깃줄
 def dynamic_2565():
     size = int(input())
     line = [list(map(int, input().split())) for _ in range(size)]

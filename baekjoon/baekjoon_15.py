@@ -1,4 +1,4 @@
-# 11047번
+# 11047번 동전0
 def greedy_11047():
     num, value = map(int, input().split())
     v_list = [int(input()) for _ in range(num)]
@@ -16,7 +16,7 @@ def greedy_11047():
     print(min_value)
 
 
-# 1931번
+# 1931번 회의실 배정
 def greedy_1931():
     num = int(input())
     meet_time = [list(map(int, input().split())) for _ in range(num)]
@@ -45,7 +45,7 @@ def greedy_1931():
     print(max_meet)
 
 
-# 11399번
+# 11399번 ATM
 def greedy_11399():
     num = int(input())
     time = list(map(int, input().split()))
