@@ -29,7 +29,7 @@ def queue_1021():
         qu_len = len(num)
         qu_idx = num.index(locate[i])
         # 왼쪽으로 한 칸 이동
-        if qu_idx < qu_len // 2:
+        if qu_idx <= qu_len // 2:
             while True:
                 if num[0] == locate[i]:
                     del num[0]

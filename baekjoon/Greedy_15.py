@@ -20,7 +20,7 @@ def greedy_11047():
 def greedy_1931():
     num = int(input())
     meet_time = [list(map(int, input().split())) for _ in range(num)]
-    sort_meet = sorted(meet_time, key=lambda x: (x[0], x[1]))
+    sort_meet = sorted(meet_time, key=lambda x: (x[1], x[0]))
 
     # meet = [0 for _ in range(num)]
     #
@@ -36,7 +36,8 @@ def greedy_1931():
     # print(max(meet))
 
     end = 0
-    max_meet = 1
+    max_meet = 0
+    print(sort_meet)
     for ti in sort_meet:
         if ti[0] >= end:
             end = ti[1]
@@ -60,5 +61,5 @@ def greedy_11399():
 
 if __name__ == '__main__':
     # greedy_11047()
-    # greedy_1931()
-    greedy_11399()
+    greedy_1931()
+    # greedy_11399()
