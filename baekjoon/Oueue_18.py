@@ -28,7 +28,7 @@ def queue_1021():
     for i in range(m):
         qu_len = len(num)
         qu_idx = num.index(locate[i])
-
+        # 왼쪽으로 한 칸 이동
         if qu_idx < qu_len // 2:
             while True:
                 if num[0] == locate[i]:
@@ -38,6 +38,7 @@ def queue_1021():
                     num.append(num[0])
                     del num[0]
                     cnt += 1
+        # 오른쪽으로 한 칸 이동
         else:
             while True:
                 if num[0] == locate[i]:
