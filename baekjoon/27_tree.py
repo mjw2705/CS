@@ -60,9 +60,40 @@ def Tree_1967():
 
 
 # 1991번 트리 순회
+def Tree_1991():
+    n = int(sys.stdin.readline())
+    tree = {}
+
+    for _ in range(n):
+        node, left, right = map(str, sys.stdin.readline().split())
+        tree[node] = [left, right]
+
+    def preorder(root):
+        if root != '.':
+            print(root, end='')
+            preorder(tree[root][0])
+            preorder(tree[root][1])
+
+    def inorder(root):
+        if root != '.':
+            inorder(tree[root][0])
+            print(root, end='')
+            inorder(tree[root][1])
+
+    def postorder(root):
+        if root != '.':
+            postorder(tree[root][0])
+            postorder(tree[root][1])
+            print(root, end='')
+
+    preorder('A')
+    print()
+    inorder('A')
+    print()
+    postorder('A')
 
 
-
-# if __name__ == '__main__':
+if __name__ == '__main__':
     # Tree_11725()
     # Tree_1967()
+    Tree_1991()
