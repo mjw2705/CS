@@ -3,6 +3,17 @@ import sys
 
 # 2606번 바이러스
 def DFS_2606():
+
+    def bfs(start, dic):
+        visit = []
+        queue = [start]
+        while queue:
+            for i in dic[queue.pop()]:
+                if i not in visit:
+                    visit.append(i)
+                    queue.append(i)
+        return visit
+
     n = int(sys.stdin.readline())
     m = int(sys.stdin.readline())
     dic = {}
@@ -14,23 +25,7 @@ def DFS_2606():
         dic[a].add(b)
         dic[b].add(a)
 
-    def dfs(start, dic):
-        for i in dic[start]:
-            if i not in visit:
-                visit.append(i)
-                dfs(i, dic)
-
-    def bfs(start, dic):
-        queue = [start]
-        while queue:
-            for i in dic[queue.pop()]:
-                if i not in visit:
-                    visit.append(i)
-                    queue.append(i)
-
-    visit = []
-    dfs(1, dic)
-    print(len(visit) - 1)
+    print(len(bfs(1, dic)) - 1)
 
 
 # 2178번 미로탐색
@@ -62,5 +57,5 @@ def BFS_2178():
 
 
 if __name__ == '__main__':
-    # DFS_2606()
-    BFS_2178()
+    DFS_2606()
+    # BFS_2178()
