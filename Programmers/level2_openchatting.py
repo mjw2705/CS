@@ -4,6 +4,7 @@ record = ["Enter uid1234 Muzi", "Enter uid4567 Prodo", "Leave uid1234",
 answer = []
 logs = [reco.split(' ') for reco in record]
 chatting = {log[1]:log[2] for log in logs if log[0] != 'Leave'}
+
 for log in logs:
     if log[0] == 'Enter':
         answer.append(f'{chatting[log[1]]}님이 들어왔습니다.')
