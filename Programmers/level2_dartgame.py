@@ -10,6 +10,7 @@ for dartResult in dartResults:
 
     p = re.compile('(\d+)([SDT])([*#]?)') # 왜 ?는 []밖에 위치?
     darts = p.findall(dartResult)
+    # [('1', 'S', ''), ('2', 'D', '*'), ('3', 'T', '')]
 
     score = []
     for i in range(len(darts)):
