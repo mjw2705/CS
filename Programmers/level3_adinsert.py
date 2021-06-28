@@ -40,7 +40,7 @@ def solution(play_time, adv_time, logs):
     for i in range(len(times)):
         times[i] += times[i-1]
 
-    most_view = 0
+    most_view = times[adv-1] # 0으로 하면 틀림
     max_time = 0
     for i in range(adv, play):
         if most_view < times[i] - times[i-adv]:
