@@ -1,60 +1,46 @@
-import re
+ps = "(()())()", ")(", "()))((()"
 
-# 올바른 문자열인지 확인
-def correct_str(p):
+def is_balance(w):
+    check = 0
+    for w_ in w:
+        if w_ == '(':
+            check += 1
+        else:
+            check -= 1
+    return not bool(check)
+
+def is_correct(w):
     stack = []
-    check = False
-    for i in p:
-        if len(stack) == 0:
-            if i == "(":
-                stack += i
-                check = True
+    for w_ in w:
+        if w_ == '(':
+            stack.append(w_)
+        else:
+            if not stack:
+                return False
             else:
-                check = False
-                break
-        elif i == "(":
-            stack += i
-        elif i == ")":
-            stack.pop()
-    return stack, check
+                stack.pop()
+    return True
 
+def solution(p):
+    if is_correct(p) == True:
+        return p
 
-# p = ")("
-p = "()))((()"
-
-answer = ""
-stack, check = correct_str(p)
-correct = ""
-balance = ""
-u = ""
-v = ""
-if not stack and check:
-    answer = p
-elif not check:
-    # 2
-    for i in range(len(p)//2):
-        u = p[i*2:i*2+2]
-        idx = i*2+2
-        if u.count("(") == u.count(")"):
+    for i in range(2, len(p)+1, 2):
+        if is_balance(p[:i]) == True:
+            u, v = p[:i], p[i:]
             break
-    v = p[idx:]
-    # 3
-    stack, check = correct_str(u)
-    if not stack and check:
-        answer += u
-    # else:
 
+    if is_correct(u) == True:
+        return u + solution(v)
+    else:
+        result = '(' + solution(v) + ')'
+        for u_ in u[1:-1]:
+            if u_ == '(':
+                result += ')'
+            else:
+                result += '('
 
-print(u)
-print(v)
+    return result
 
-#     stack += i
-#     print(stack)
-#     if len(stack) > 1:
-#         if stack[-2] == "(" and stack[-1] == ")":
-#             stack = stack.replace(stack[-1], "")
-#             stack = stack.replace(stack[-1], "")
-#     print(stack)
-# print(stack)
-
-
+for p in ps:
+    print(solution(p))
