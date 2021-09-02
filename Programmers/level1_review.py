@@ -88,5 +88,95 @@ for numbers, hand in zip(numberss, hands):
             right_loc = num
 
     print(result)
-"""
 
+
+'''크레인 인형뽑기'''
+import numpy as np
+
+board = [[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]]
+moves = [1,5,3,5,1,2,1,4]
+
+basket = []
+cnt = 0
+
+for mv in moves:
+    m = mv - 1
+    for i in range(len(board)):
+        if board[i][m] != 0:
+            basket.append(board[i][m])
+            board[i][m] = 0
+            break
+    if len(basket) > 1:
+        if basket[-1] == basket[-2]:
+            basket = basket[:-2]
+            cnt += 2
+
+
+'''실패율'''
+ns = [5, 4]
+stagess = [[2, 1, 2, 6, 2, 4, 3, 3], [4, 4, 4, 4, 4]]
+
+for n, stages in zip(ns, stagess):
+
+    missrate = {}
+    for i in range(1, n+1):
+        cnt = 0
+        fail = 0
+        for s in stages:
+           if s >= i:
+               cnt += 1
+           if s == i:
+               fail += 1
+
+        if cnt == 0:
+            missrate[i] = 0
+        else:
+            missrate[i] = fail / cnt
+
+    ans = sorted(missrate.items(), key=lambda x : x[1], reverse=True)
+    answer = [item[0] for item in ans]
+    print(answer)
+
+
+'''비밀지도'''
+ns = [5, 6]
+arr1s = [[9, 20, 28, 18, 11], [46, 33, 33, 22, 31, 50]]
+arr2s = [[30, 1, 21, 17, 28], [27 ,56, 19, 14, 14, 10]]
+
+for n, arr1, arr2 in zip(ns, arr1s, arr2s):
+
+    answer = []
+
+    for a1, a2 in zip(arr1, arr2):
+        map = bin(a1 | a2)[2:].zfill(n)
+        map = map.replace('1', '#')
+        map = map.replace('0', ' ')
+        answer.append(map)
+
+
+"""
+'''다트 게임'''
+import re
+
+dartResults =['1S2D*3T', '1D2S#10S', '1D2S0T', '1S*2T*3S']
+
+for dartResult in dartResults:
+
+    score = []
+    bonus = {'S':1, 'D':2, 'T':3}
+    opt = {'*':2, '#':-1}
+
+    dart = re.compile("(\d+)(\D)(\*|#)?")
+    spl = dart.findall(dartResult)
+
+    for i in range(3):
+        if not spl[i][2]:
+            score.append(int(spl[i][0]) ** bonus[spl[i][1]])
+        else:
+            score.append(int(spl[i][0]) ** bonus[spl[i][1]] * opt[spl[i][2]])
+
+        if spl[i][2] == '*' and i >= 1:
+            score[i-1] *= 2
+
+    answer = sum(score)
+    print(answer)
