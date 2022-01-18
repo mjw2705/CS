@@ -24,8 +24,6 @@ for n, left, right in zip(ns, lefts, rights):
     print(answer)
 
 
-import numpy as np
-
 def solution(n, left, right):
     answer = []
     for i in range(left, right+1):
