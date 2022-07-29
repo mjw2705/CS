@@ -3,6 +3,13 @@ target = 3
 
 from itertools import product
 
+''''''
+arr = [(x, -x) for x in numbers]
+products = list(map(sum, product(*arr)))
+answer = products.count(target)
+print(answer)
+
+
 def solution(numbers, target):
     answer = 0
     n = len(numbers)
@@ -28,7 +35,7 @@ n = len(numbers)
 queue = [[numbers[0], 0], [-1 * numbers[0], 0]]
 
 while queue:
-    temp, idx = queue.pop()
+    temp, idx = queue.pop(0)
     idx += 1
 
     if idx < n:
